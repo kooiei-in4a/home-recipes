@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マルタイ棒ラーメン 虚無ラーメン レシピ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap');
+
+  :root {
+    --red: #D62B2B;
+    --dark: #1a1008;
+    --cream: #FFF8EE;
+    --gold: #C9922A;
+    --light-red: #fdeaea;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dark);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+  }
+
+  /* ── ヘッダー ── */
+  header {
+    border-top: 6px solid var(--red);
+    border-bottom: 3px solid var(--red);
+    padding: 18px 0 14px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .title-block { flex: 1; }
+
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: .04em;
+    color: var(--dark);
+  }
+
+  h1 span {
+    color: var(--red);
+  }
+
+  .subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: .05em;
+  }
+
+  .cost-badge {
+    background: var(--red);
+    color: #fff;
+    padding: 6px 12px;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  .cost-badge .yen {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    display: block;
+  }
+
+  .cost-badge .per {
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+
+  /* ── 2ペインレイアウト ── */
+  .two-pane {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .two-pane > section {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  /* ── セクション共通 ── */
+  section { margin-bottom: 28px; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--red);
+    border-bottom: 1.5px solid var(--red);
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+
+  /* ── コスパカード ── */
+  .cost-row {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cost-card {
+    flex: 1;
+    background: var(--light-red);
+    border-left: 4px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .cost-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .cost-card .desc {
+    font-size: 12px;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  /* ── 材料テーブル ── */
+  table {
+    width: auto;
+    min-width: 360px;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead th {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 7px 16px 7px 12px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: .1em;
+    font-weight: 700;
+  }
+
+  thead th:last-child {
+    text-align: right;
+  }
+
+  tbody tr:nth-child(even) { background: #fff5e6; }
+  tbody tr:nth-child(odd)  { background: #fff; }
+
+  tbody td {
+    padding: 8px 16px 8px 12px;
+    border-bottom: 1px solid #e8d9c8;
+    white-space: nowrap;
+  }
+
+  tbody td:last-child {
+    text-align: right;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--red);
+    padding-left: 24px;
+  }
+
+  .note-row td {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    border-bottom: none;
+  }
+
+  /* ── 手順 ── */
+  .steps { counter-reset: step; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--red);
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+  }
+
+  .step-body {
+    padding-top: 6px;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .step-body strong {
+    color: var(--red);
+  }
+
+  /* ── Tipsボックス ── */
+  .tips {
+    background: transparent;
+    color: var(--dark);
+    border-left: 4px solid var(--gold);
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 28px;
+  }
+
+  .tips .tips-title {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .tips ul {
+    padding-left: 18px;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  /* ── フッター ── */
+  footer {
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+    font-size: 11px;
+    color: #aaa;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── 印刷用 ── */
+  @media print {
+    body { padding: 16px; max-width: 100%; }
+    header { page-break-inside: avoid; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div style="padding:12px 24px;background:#0f0f0f;border-bottom:1px solid #2a2a2a;">
+  <a href="../index.html" style="font-size:12px;color:#888;text-decoration:none;letter-spacing:.1em;">
+    ← Koo's Kitchen
+  </a>
+</div>
+
+<!-- ヘッダー -->
+<header>
+  <div class="title-block">
+    <h1>業スー <span>マルタイ棒ラーメン</span></h1>
+    <p class="subtitle">業務スーパー × マルタイ棒ラーメン（業務用）で作る最強コスパの一杯</p>
+  </div>
+  <div class="cost-badge">
+    <span class="yen">¥60</span>
+    <span class="per">1食あたり</span>
+  </div>
+</header>
+
+<!-- 材料 ＋ 作り方 2ペイン -->
+<div class="two-pane">
+  <section>
+    <p class="section-title">材料（1人前）</p>
+    <table>
+      <thead>
+        <tr>
+          <th>材料</th>
+          <th>分量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>マルタイ棒ラーメン（業務用）</td><td>70g</td></tr>
+        <tr><td>水</td><td>300g</td></tr>
+        <tr><td>業務スーパー ラーメンスープ</td><td>大さじ 2</td></tr>
+        <tr><td>ほんだし</td><td>小さじ 1/2</td></tr>
+        <tr><td>味の素</td><td>7振り</td></tr>
+        <tr><td>コショウ</td><td>3振り</td></tr>
+        <tr><td>ラード</td><td>小さじ 1</td></tr>
+        <tr><td>ネギ油</td><td>小さじ 1</td></tr>
+        <tr><td>小ねぎ（トッピング）</td><td>適量</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <p class="section-title">作り方</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          別鍋にたっぷりの湯を沸かす。<br>
+          麺を入れ、<strong>2分30秒茹でる</strong>。箸でほぐしながら茹でること。
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          別の鍋に水・業務スーパーラーメンスープ・ほんだし・味の素・コショウ・ラード・ネギ油を入れ、<strong>沸騰させてスープを作る</strong>。
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          茹で上がった麺を<strong>しっかり湯切り</strong>して丼に入れる。
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          熱々のスープを注ぎ、<strong>小ねぎ</strong>をたっぷり散らして完成。
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Tips -->
+<div class="tips">
+  <p class="tips-title">▶ TIPS &amp; アレンジ</p>
+  <ul>
+    <li><strong style="color:var(--red)">生麺食感にする裏ワザ：</strong>麺を水に30分浸けてから、250ccのお湯で<strong>20秒</strong>だけ茹でる</li>
+    <li>業務用スープ活用で味の調整が簡単。量を加減してお好みの濃さに</li>
+    <li>替え玉・鍋のシメ・冷やし中華など用途が幅広い</li>
+    <li>濃いめが好きなら業務スーパーラーメンスープを大さじ3に増量してみて</li>
+    <li>焦がしにんにく豚骨アレンジ：豆乳200cc＋ラード＋にんにく2片を焦がしてコクをプラス</li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>
